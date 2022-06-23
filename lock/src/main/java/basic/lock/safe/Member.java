@@ -1,5 +1,7 @@
 package basic.lock.safe;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -12,32 +14,32 @@ import javax.persistence.Version;
 @Entity
 public class Member {
 
-  @Id
-  @GeneratedValue
-  @Column(name = "member_id")
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "member_id")
+    private Long id;
 
-  private Long age = 0L;
+    private Long age = 0L;
 
-  @Version
-  private Long version;
+    @Version
+    private Long version;
 
-  @OneToMany(mappedBy = "member")
-  List<Car> cars = new ArrayList<>();
+    @OneToMany(mappedBy = "member")
+    List<Car> cars = new ArrayList<>();
 
-  public Long getId() {
-    return id;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public Long getAge() {
-    return age;
-  }
+    public Long getAge() {
+        return age;
+    }
 
-  public Long getVersion() {
-    return version;
-  }
+    public Long getVersion() {
+        return version;
+    }
 
-  public void increaseCount() {
-    age++;
-  }
+    public void increaseCount() {
+        age++;
+    }
 }
